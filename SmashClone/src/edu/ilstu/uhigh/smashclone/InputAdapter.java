@@ -1,89 +1,67 @@
 package edu.ilstu.uhigh.smashclone;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /*
- * An input adapter object acts as the connection between keyboard/mouse and
- * the game objects. It receives the native OS keyboard events, and
- * distributes them to the screen object and the two player objects.
- * ScreenInterface defines the required methods for the screen - for now,
- * just a pause action and a quit action.
- * Controllable defines the methods that players/characters must implement.
+ * The InputAdapter receives all the input from the operating system.
+ * Also handles interpreting controller events to KeyEvents <--TODO
  */
 public class InputAdapter implements MouseListener, KeyListener {
+	//
+	//
+	// Control to send the inputs into
+	ControlManager ctrl;
 
-	ScreenInterface screen;
-	Controllable p1, p2;
-	boolean[] keys1, keys2;
-	
-	public InputAdapter(ScreenInterface si, Controllable c1, Controllable c2) {
-		screen = si;
-		p1 = c1;
-		p2 = c2;
-		keys1 = new boolean[6];
-		keys2 = new boolean[6];
+	// Constructor: sets instance controlmanger from the provided control
+	// manager (which is the main one sent from panel)
+	public InputAdapter(ControlManager ctrl) {
+		this.ctrl = ctrl;
 	}
 
-	public void dispatchEvents() {
-		p1.inputChange(keys1);
-		p2.inputChange(keys2);
-	}
-	
-	@Override
+	// keypPressed()
+	// PRECONDITION: Receives input from the Listener interfaces
+	// POSTCONDITION: Sends the keyInput to the controller
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_W) keys1[0] = true;
-		if (e.getKeyCode() == KeyEvent.VK_S) keys1[1] = true;
-		if (e.getKeyCode() == KeyEvent.VK_A) keys1[2] = true;
-		if (e.getKeyCode() == KeyEvent.VK_D) keys1[3] = true;
-		if (e.getKeyCode() == KeyEvent.VK_O) keys2[0] = true;
-		if (e.getKeyCode() == KeyEvent.VK_L) keys2[1] = true;
-		if (e.getKeyCode() == KeyEvent.VK_K) keys2[2] = true;
-		if (e.getKeyCode() == KeyEvent.VK_SEMICOLON) keys2[3] = true;
-		//TODO add button A and B keys
-		dispatchEvents();
+		// Sends the keyPressed event to the control in order
+		// to flow through the framework into the models (characters)
+		ctrl.keyPressed(e);
 	}
-	
-	@Override
+
+	// keypReleased()
+	// PRECONDITION: Receives input from the Listener interfaces
+	// POSTCONDITION: Sends the keyInput to the controller
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_W) keys1[0] = false;
-		if (e.getKeyCode() == KeyEvent.VK_S) keys1[1] = false;
-		if (e.getKeyCode() == KeyEvent.VK_A) keys1[2] = false;
-		if (e.getKeyCode() == KeyEvent.VK_D) keys1[3] = false;
-		if (e.getKeyCode() == KeyEvent.VK_O) keys2[0] = false;
-		if (e.getKeyCode() == KeyEvent.VK_L) keys2[1] = false;
-		if (e.getKeyCode() == KeyEvent.VK_K) keys2[2] = false;
-		if (e.getKeyCode() == KeyEvent.VK_SEMICOLON) keys2[3] = false;
-		//TODO add button A and B keys
-		dispatchEvents();
+		// Sends the keyReleased event to the control in order
+		// to flow through the framework into the models (characters)
+		ctrl.keyReleased(e);
 	}
 
-	@Override
+	// This does not need to be implemented
+	// Unless we have a keyboard to set a
+	// characters name (as an example) TODO
 	public void keyTyped(KeyEvent e) {
-		if (e.getKeyChar() == 'Q' || e.getKeyChar() == 'q')
-			screen.quit();
-		if (e.getKeyChar() == 'P' || e.getKeyChar() == 'p')
-			screen.pause();
+
 	}
 
-	@Override
+	// This does not need to be implemented
+	// unless we use mouse input to control
+	// anything such as clicking a button
+	// or for a players attack (as an example) TODO
 	public void mouseClicked(MouseEvent arg0) {
 	}
 
-	@Override
 	public void mouseEntered(MouseEvent arg0) {
 	}
 
-	@Override
 	public void mouseExited(MouseEvent arg0) {
 	}
 
-	@Override
 	public void mousePressed(MouseEvent arg0) {
 	}
 
-	@Override
 	public void mouseReleased(MouseEvent arg0) {
 	}
 
