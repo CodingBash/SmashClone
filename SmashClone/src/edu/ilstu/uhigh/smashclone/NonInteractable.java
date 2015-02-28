@@ -1,14 +1,14 @@
 package edu.ilstu.uhigh.smashclone;
 import java.awt.Graphics;
 
-/* Controllable defines an interface for character objects
- * to be controlled by the game engine
+/* NonInteractable defines an object that does not interact with the 
+ * characters nor is controlled
  */
 public interface NonInteractable {
-	/* paint is called once per frame
-	 * paint is handed the whole graphics screen to draw on - don't mess it up!
+	/* draw is called once per frame
+	 * draw is handed the whole graphics screen to draw on - don't mess it up!
 	 */
-	public void paint(Graphics g);
+	public void draw(Graphics g);
 	
 	
 }
