@@ -17,6 +17,7 @@ public class TestCharacter implements Controllable {
 	//
 	// Chracter's delta xPos value
 	int velocity;
+	private static final int RESCALE = 3;
 	//
 	//
 	// Essential objects to the characters
@@ -26,17 +27,17 @@ public class TestCharacter implements Controllable {
 	//
 	//
 	// Animation sequences for the characters spritesheets
-	final int[] walkDown = { 0, 1, 2, 3, 4, 5 };
-	final int[] walkUp = { 24, 25, 26, 27, 28, 29 };
-	final int[] walkLeft = { 12, 13, 14, 15, 16, 17 };
-	final int[] walkRight = { 36, 37, 38, 39, 40, 41, 42 };
+	//final int[] walkDown = { 0, 1, 2, 3, 4, 5 };
+	//final int[] walkUp = { 24, 25, 26, 27, 28, 29 };
+	final int[] walkLeft = { 4, 5, 6, 7};
+	final int[] walkRight = { 0, 1, 2, 3};
 
 	// Constructor: Sets the positions, velocity, spritesheet, and key buttons
 	public TestCharacter(int x, int y, KeyProcessor keyButtons) {
 		xPos = x;
 		yPos = y;
 		velocity = 5;
-		sprite = new SpriteManager("GoblinWalk.png", 126, 170);
+		sprite = new SpriteManager("LeftyLukeSpriteSheet.png", 16, 16);
 		this.keyButtons = keyButtons;
 		keyInput = new boolean[6];
 	}
@@ -45,7 +46,9 @@ public class TestCharacter implements Controllable {
 	// PRECONDITION: The SpriteManager must be bug-free
 	// POSTCONDITION: draws the current frame onto the screen
 	public void draw(Graphics g) {
-		g.drawImage(sprite.currentFrame(), xPos, yPos, null);
+		g.drawImage(sprite.currentFrame(), xPos, yPos, xPos+RESCALE*sprite.currentFrame().getWidth(), yPos+RESCALE*sprite.currentFrame().getHeight(), 
+				0,0,16, 16,  null);
+		
 	}
 
 	// update()
@@ -55,6 +58,7 @@ public class TestCharacter implements Controllable {
 		// Update the spritesheet frame
 		sprite.update();
 		// Update movement based on directional booleans
+		/*
 		if (keyInput[KeyProcessor.UP]) {
 			yPos -= velocity;
 			sprite.animate(walkUp);
@@ -63,6 +67,7 @@ public class TestCharacter implements Controllable {
 			yPos += velocity;
 			sprite.animate(walkDown);
 		}
+		*/
 		if (keyInput[KeyProcessor.LEFT]) {
 			xPos -= velocity;
 			sprite.animate(walkLeft);
