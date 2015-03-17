@@ -9,6 +9,6 @@ public interface NonInteractable {
 	 * draw is handed the whole graphics screen to draw on - don't mess it up!
 	 */
 	public void draw(Graphics g);
-	
+
 	
 }

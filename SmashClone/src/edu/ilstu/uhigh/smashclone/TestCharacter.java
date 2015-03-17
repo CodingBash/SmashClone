@@ -34,10 +34,10 @@ public class TestCharacter implements Controllable {
 
 	// Constructor: Sets the positions, velocity, spritesheet, and key buttons
 	public TestCharacter(int x, int y, KeyProcessor keyButtons) {
-		xPos = x;
-		yPos = y;
-		velocity = 5;
 		sprite = new SpriteManager("LeftyLukeSpriteSheet.png", 16, 16);
+		xPos = x;
+		yPos = y-(sprite.spriteHeight*RESCALE);
+		velocity = 5;
 		this.keyButtons = keyButtons;
 		keyInput = new boolean[6];
 	}

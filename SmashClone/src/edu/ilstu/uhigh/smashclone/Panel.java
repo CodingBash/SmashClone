@@ -36,7 +36,7 @@ public class Panel extends JPanel {
 		running = true;
 		// Set the panel information
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		setBackground(Color.BLACK);
+		setBackground(Color.GREEN);
 		// Declare the input adapter
 		ia = new InputAdapter(control);
 		// Add the input listeners to the input adapter

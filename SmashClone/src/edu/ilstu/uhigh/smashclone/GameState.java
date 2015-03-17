@@ -10,6 +10,10 @@ public class GameState implements State, ScreenInterface {
 	KeyProcessor allInputs[]; //Make sure the index corresponds to the player index
 	public static final int MAXPLAYERS = 2;
 	Controllable players[];
+	
+	public static final int MAXMAPS = 1;
+	public int currentMap;
+	Map maps[]; //Changed from NonInterable to specific Map to operate on specific maps and map methods
 	// constructor
 	public GameState() {
 		super();
@@ -21,7 +25,11 @@ public class GameState implements State, ScreenInterface {
 		//Create ScreenInterface
 		pause = false;
 		quit = false;
-		
+		currentMap = 0;
+		//Create maps
+		//TODO: When loading, only need to load one map, not all (for efficiency)
+		maps = new Map[MAXMAPS];
+		maps[0] = new Map();
 		//Create KeyInputs
 		allInputs = new KeyProcessor[MAXPLAYERS];
 		
@@ -30,14 +38,17 @@ public class GameState implements State, ScreenInterface {
 		
 		//Create Players
 		players = new Controllable[MAXPLAYERS];
-	
-		players[0] = new TestCharacter(100, 100, allInputs[0]);
-		players[1] = new TestCharacter(500, 100, allInputs[1]);
+		
+		players[0] = new TestCharacter(100, maps[currentMap].getFloor().y, allInputs[0]);
+		players[1] = new TestCharacter(500, maps[currentMap].getFloor().y, allInputs[1]);
 	}
 
 
 	@Override
 	public void draw(Graphics g) {
+		for(Map m: maps){
+			m.draw(g);
+		}
 		for(Controllable c: players){
 			c.draw(g);
 		}
