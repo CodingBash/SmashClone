@@ -37,7 +37,7 @@ public class TestCharacter implements Controllable {
 		sprite = new SpriteManager("LeftyLukeSpriteSheet.png", 16, 16);
 		xPos = x;
 		yPos = y-(sprite.spriteHeight*RESCALE);
-		velocity = 5;
+		velocity = 3;
 		this.keyButtons = keyButtons;
 		keyInput = new boolean[6];
 	}

@@ -11,6 +11,7 @@ public class Map implements NonInteractable {
 
 	// Platform variables will begin with a p_
 	// A map must have a floor platform
+	// TODO: Array of Platforms. First platform in the array should be the main floor.
 	private Rectangle p_floor;
 
 	public Map() {
