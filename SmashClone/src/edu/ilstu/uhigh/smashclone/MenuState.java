@@ -36,6 +36,7 @@ public class MenuState implements State {
 	public void init() {
 		menus = new ArrayList<Menu>();
 		menus.add(GENERALMENU, new GeneralMenu());
+		menus.add(OPTIONMENU, new OptionMenu());
 		currentMenu = GENERALMENU;
 	}
 
