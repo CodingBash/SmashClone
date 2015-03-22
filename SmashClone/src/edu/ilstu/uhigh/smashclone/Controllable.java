@@ -32,6 +32,4 @@ public interface Controllable {
 	 */
 	public void sendKeyInput(KeyEvent k, boolean pressed);
 
-	
-	public String getName();
 }

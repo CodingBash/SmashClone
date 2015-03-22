@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 /* Character is the generic class that gives the default data that
  * other characters will have (which will extend this class)
  */
-public class TestCharacter implements Controllable {
+public class TestCharacter2 implements Controllable {
 	//
 	//
 	// Character's position variables
@@ -32,7 +32,7 @@ public class TestCharacter implements Controllable {
 	final int[] walkRight = { 36, 37, 38, 39, 40, 41, 42 };
 
 	// Constructor: Sets the positions, velocity, spritesheet, and key buttons
-	public TestCharacter(int x, int y, KeyProcessor keyButtons) {
+	public TestCharacter2(int x, int y, KeyProcessor keyButtons) {
 		xPos = x;
 		yPos = y;
 		velocity = 5;
