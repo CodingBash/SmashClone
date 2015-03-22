@@ -7,9 +7,8 @@ import java.awt.event.KeyListener;
 public class GameState implements State, ScreenInterface {
 	// instance variables
 	boolean pause, quit;
-	KeyProcessor allInputs[]; //Make sure the index corresponds to the player index
-	public static final int MAXPLAYERS = 2;
 	Controllable players[];
+	
 	// constructor
 	public GameState() {
 		super();
@@ -22,17 +21,12 @@ public class GameState implements State, ScreenInterface {
 		pause = false;
 		quit = false;
 		
-		//Create KeyInputs
-		allInputs = new KeyProcessor[MAXPLAYERS];
-		
-		allInputs[0] = new PlayerOneKeys();
-		allInputs[1] = new PlayerTwoKeys();
 		
 		//Create Players
-		players = new Controllable[MAXPLAYERS];
+		players = new Controllable[Panel.control.characters.MAXPLAYERS];
 	
-		players[0] = Panel.control.currentplayers[0];
-		players[1] = Panel.control.currentplayers[1];
+		players[0] = Panel.control.characters.currentplayers[0];
+		players[1] = Panel.control.characters.currentplayers[1];
 	}
 
 

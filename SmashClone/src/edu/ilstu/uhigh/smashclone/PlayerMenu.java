@@ -11,6 +11,8 @@ public class PlayerMenu implements Menu {
 
 	protected int currentChoice = 0;
 	protected ArrayList<String> options;
+	protected ArrayList<Controllable> characters1;
+	protected ArrayList<Controllable> characters2;
 
 	private static final int BACKINDEX = 0;
 	private static final int HOMEINDEX = 1;
@@ -25,13 +27,15 @@ public class PlayerMenu implements Menu {
 	private int[] CharacterChoice = new int[2];
 	public PlayerMenu() {
 		super();
-		CharacterChoice[0] = Panel.control.characters1.indexOf(Panel.control.currentplayers[0]);
-		CharacterChoice[1] = Panel.control.characters2.indexOf(Panel.control.currentplayers[1]);
+		characters1 = Panel.control.characters.getCharacters1();
+		characters2 = Panel.control.characters.getCharacters2();
+		CharacterChoice[0] = characters1.indexOf(Panel.control.characters.currentplayers[0]);
+		CharacterChoice[1] = characters2.indexOf(Panel.control.characters.currentplayers[1]);
 		options = new ArrayList<String>();
 		options.add(BACKINDEX, "BACK");
 		options.add(HOMEINDEX, "Home");
-		options.add(PLAYER1INDEX, Panel.control.characters1.get(CharacterChoice[0]).toString());
-		options.add(PLAYER2INDEX, Panel.control.characters2.get(CharacterChoice[1]).toString());
+		options.add(PLAYER1INDEX, characters1.get(CharacterChoice[0]).toString());
+		options.add(PLAYER2INDEX, characters2.get(CharacterChoice[1]).toString());
 		// options.add(GAMESTATE, "GAMESTATE");
 		
 		textSpace = 50;
@@ -85,10 +89,10 @@ public class PlayerMenu implements Menu {
 			Panel.control.menu.setMenu(MenuState.OPTIONMENU);
 		} else if(currentChoice == 2)
 		{
-			Panel.control.currentplayers[0] = Panel.control.characters1.get(CharacterChoice[0]);
+			Panel.control.characters.currentplayers[0] = characters1.get(CharacterChoice[0]);
 		} else if(currentChoice == 3)
 		{
-			Panel.control.currentplayers[1] = Panel.control.characters2.get(CharacterChoice[1]);
+			Panel.control.characters.currentplayers[1] = characters2.get(CharacterChoice[1]);
 		}
 	}
 
@@ -109,13 +113,13 @@ public class PlayerMenu implements Menu {
 		case KeyEvent.VK_LEFT:
 			if(currentChoice == PLAYER1INDEX)
 			{
-				CharacterChoice[0] = (CharacterChoice[0] + 1) % Panel.control.characters1.size();
-				options.set(PLAYER1INDEX, Panel.control.characters1.get(CharacterChoice[0]).toString());
+				CharacterChoice[0] = (CharacterChoice[0] + 1) % characters1.size();
+				options.set(PLAYER1INDEX, characters1.get(CharacterChoice[0]).toString());
 			}
 			else if(currentChoice == PLAYER2INDEX)
 			{
-				CharacterChoice[1] = (CharacterChoice[1] + 1) % Panel.control.characters2.size();
-				options.set(PLAYER2INDEX, Panel.control.characters2.get(CharacterChoice[1]).toString());
+				CharacterChoice[1] = (CharacterChoice[1] + 1) % characters2.size();
+				options.set(PLAYER2INDEX, characters2.get(CharacterChoice[1]).toString());
 			}
 			break;
 		case KeyEvent.VK_RIGHT:
@@ -123,15 +127,15 @@ public class PlayerMenu implements Menu {
 			{
 				CharacterChoice[0]--;
 				if(CharacterChoice[0] == 0)
-					CharacterChoice[0] = Panel.control.characters1.size() - 1;
-				options.set(PLAYER1INDEX, Panel.control.characters1.get(CharacterChoice[0]).toString());
+					CharacterChoice[0] = characters1.size() - 1;
+				options.set(PLAYER1INDEX, characters1.get(CharacterChoice[0]).toString());
 			}
 			else if(currentChoice == PLAYER2INDEX)
 			{
 				CharacterChoice[1]--;
 				if(CharacterChoice[1] == 0)
-					CharacterChoice[1] = Panel.control.characters2.size() - 1;
-				options.set(PLAYER2INDEX, Panel.control.characters2.get(CharacterChoice[1]).toString());
+					CharacterChoice[1] = characters2.size() - 1;
+				options.set(PLAYER2INDEX, characters2.get(CharacterChoice[1]).toString());
 			}
 		// No default unless stating an exception
 		}
