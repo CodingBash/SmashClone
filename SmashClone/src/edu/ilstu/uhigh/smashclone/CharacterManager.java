@@ -21,11 +21,11 @@ public class CharacterManager {
 		characters1 = new ArrayList<Controllable>();
 		characters2 = new ArrayList<Controllable>();
 		// Add created characters twice for each set of keys
-		characters1.add(new TestCharacter(500, 100, new PlayerOneKeys()));
-		characters2.add(new TestCharacter(500, 100, new PlayerTwoKeys()));
-		characters1.add(new TestCharacter2(500, 100, new PlayerOneKeys()));
-		characters2.add(new TestCharacter2(500, 100, new PlayerTwoKeys()));
-				//Set Default Characters to test characters
+		characters1.add(new TestCharacter(500, 100, allInputs[0]));
+		characters2.add(new TestCharacter(500, 100, allInputs[1]));
+		characters1.add(new TestCharacter2(500, 100, allInputs[0]));
+		characters2.add(new TestCharacter2(500, 100, allInputs[1]));
+		//Set Default Characters to test characters
 		currentplayers[0] = characters1.get(0);
 		currentplayers[0] = characters2.get(0);
 
