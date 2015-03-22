@@ -91,4 +91,9 @@ public class TestCharacter implements Controllable {
 		if (k.getKeyCode() == keyButtons.keys[KeyProcessor.BUTTONB])
 			keyInput[KeyProcessor.BUTTONB] = pressed;
 	}
+	
+	public String getName()
+	{
+		return "TestCharacter";
+	}
 }

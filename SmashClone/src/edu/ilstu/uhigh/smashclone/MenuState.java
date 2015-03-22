@@ -37,6 +37,7 @@ public class MenuState implements State {
 		menus = new ArrayList<Menu>();
 		menus.add(GENERALMENU, new GeneralMenu());
 		menus.add(OPTIONMENU, new OptionMenu());
+		menus.add(PLAYERMENU, new PlayerMenu());
 		currentMenu = GENERALMENU;
 	}
 

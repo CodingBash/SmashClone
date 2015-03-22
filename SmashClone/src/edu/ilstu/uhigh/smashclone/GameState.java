@@ -31,8 +31,8 @@ public class GameState implements State, ScreenInterface {
 		//Create Players
 		players = new Controllable[MAXPLAYERS];
 	
-		players[0] = new TestCharacter(100, 100, allInputs[0]);
-		players[1] = new TestCharacter(500, 100, allInputs[1]);
+		players[0] = Panel.control.currentplayers[0];
+		players[1] = Panel.control.currentplayers[1];
 	}
 
 

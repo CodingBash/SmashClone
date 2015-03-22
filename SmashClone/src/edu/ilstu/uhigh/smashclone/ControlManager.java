@@ -7,6 +7,14 @@ import java.util.ArrayList;
 //
 public class ControlManager {
 
+	//Contains all created characters
+	public ArrayList<Controllable> characters;
+	//
+	//
+	//Array for Current Characters
+	public Controllable[] currentplayers = new Controllable[2];
+	//
+	//
 	// List contains all the states within the game
 	private ArrayList<State> states;
 	//
@@ -18,13 +26,26 @@ public class ControlManager {
 	// State indexes
 	public static final int MENUSTATE = 0;
 	public static final int GAMESTATE = 1;
+	//
+	//
+	//Set state to be used
+	public GameState game;
+	public MenuState menu;
 
 	// Control constructor: Initializes list, states, and sets the current state
 	public ControlManager() {
+		menu = new MenuState();
+		game = new GameState();
 		states = new ArrayList<State>();
-		states.add(MENUSTATE, new MenuState());
-		states.add(GAMESTATE, new GameState());
+		states.add(MENUSTATE, menu);
+		states.add(GAMESTATE, game);
 		currentState = MENUSTATE;
+		// Add created characters twice for each set of keys
+		characters.add(new TestCharacter(500, 100, new PlayerOneKeys()));
+		characters.add(new TestCharacter(500, 100, new PlayerTwoKeys()));
+		//Set Default Characters to test characters
+		currentplayers[0] = characters.get(0);
+		currentplayers[0] = characters.get(1);
 	}
 
 	// setState()

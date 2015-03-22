@@ -6,18 +6,15 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import edu.ilstu.uhigh.smashclone.Panel;
-import edu.ilstu.uhigh.smashclone.ControlManager;
 
-public class GeneralMenu implements Menu {
+public class OptionMenu implements Menu {
 
 	protected int currentChoice = 0;
 	protected ArrayList<String> options;
 
-	private static final int STARTINDEX = 0;
-	private static final int OPTIONSINDEX = 1;
-	private static final int EXITINDEX = 2;
-	private static final int GAMESTATE = 3;
+	private static final int BACKINDEX = 0;
+	private static final int MAPINDEX = 1;
+	private static final int PLAYERINDEX = 2;
 
 	private BufferedImage background;
 	private Color titleColor;
@@ -25,12 +22,12 @@ public class GeneralMenu implements Menu {
 
 	private int textSpace;
 
-	public GeneralMenu() {
+	public OptionMenu() {
 		super();
 		options = new ArrayList<String>();
-		options.add(STARTINDEX, "START");
-		options.add(OPTIONSINDEX, "OPTIONS");
-		options.add(EXITINDEX, "EXIT");
+		options.add(BACKINDEX, "BACK");
+		options.add(MAPINDEX, "MAPS");
+		options.add(PLAYERINDEX, "PLAYERS");
 		// options.add(GAMESTATE, "GAMESTATE");
 
 		textSpace = 50;
@@ -64,15 +61,13 @@ public class GeneralMenu implements Menu {
 
 	public void select(int currentChoice) {
 		// OVERRIDE THIS, BUT HERE IS A SIMPLE TEMPLATE
-		if (currentChoice == 0) { // START
-			Panel.control.setState(Panel.control.GAMESTATE);
-		} else if (currentChoice == 1) { // OPTIONS
-			Panel.control.menu.setMenu(MenuState.OPTIONMENU);
-		} else if (currentChoice == 2) { // EXIT
-			System.exit(0);
-		} else if (currentChoice == 3) { // CHANGEGAMESTATE
-
-		}
+		if (currentChoice == 0) { // BACK
+			Panel.control.menu.setMenu(MenuState.GENERALMENU);
+		} else if (currentChoice == 1) { // MAPS
+			Panel.control.menu.setMenu(MenuState.MAPMENU);
+		} else if (currentChoice == 2) { // PLAYERS
+			Panel.control.menu.setMenu(MenuState.PLAYERMENU);
+		} 
 	}
 
 	public void keyPressed(KeyEvent k) {
