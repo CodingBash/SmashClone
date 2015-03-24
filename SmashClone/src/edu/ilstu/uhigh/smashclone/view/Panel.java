@@ -1,4 +1,4 @@
-package edu.ilstu.uhigh.smashclone;
+package edu.ilstu.uhigh.smashclone.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -6,6 +6,9 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
+
+import edu.ilstu.uhigh.smashclone.control.ControlManager;
+import edu.ilstu.uhigh.smashclone.control.InputAdapter;
 
 @SuppressWarnings("serial")
 public class Panel extends JPanel {
@@ -25,8 +28,8 @@ public class Panel extends JPanel {
 	//
 	//
 	// CONTROL INSTANCES
-	protected static ControlManager control;
-	private InputAdapter ia;
+	public static ControlManager control;
+	public InputAdapter ia;
 
 	// Creates the panel and control framework
 	public Panel() {

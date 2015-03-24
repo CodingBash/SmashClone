@@ -1,8 +1,10 @@
-package edu.ilstu.uhigh.smashclone;
+package edu.ilstu.uhigh.smashclone.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import edu.ilstu.uhigh.smashclone.view.Panel;
 
 /*
  * Map will include the image of the map as well as positions of platforms, positions of spawns, etc.

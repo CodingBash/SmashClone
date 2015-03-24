@@ -1,6 +1,8 @@
-package edu.ilstu.uhigh.smashclone;
+package edu.ilstu.uhigh.smashclone.characters;
 
-import edu.ilstu.uhigh.smashclone.KeyProcessor;
+import edu.ilstu.uhigh.smashclone.game.Controllable;
+import edu.ilstu.uhigh.smashclone.game.KeyProcessor;
+import edu.ilstu.uhigh.smashclone.game.SpriteManager;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;

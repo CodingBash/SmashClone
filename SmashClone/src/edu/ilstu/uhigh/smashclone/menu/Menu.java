@@ -1,4 +1,4 @@
-package edu.ilstu.uhigh.smashclone;
+package edu.ilstu.uhigh.smashclone.menu;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;

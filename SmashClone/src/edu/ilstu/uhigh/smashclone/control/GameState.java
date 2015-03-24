@@ -1,8 +1,16 @@
-package edu.ilstu.uhigh.smashclone;
+package edu.ilstu.uhigh.smashclone.control;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import edu.ilstu.uhigh.smashclone.characters.TestCharacter;
+import edu.ilstu.uhigh.smashclone.game.Controllable;
+import edu.ilstu.uhigh.smashclone.game.KeyProcessor;
+import edu.ilstu.uhigh.smashclone.game.Map;
+import edu.ilstu.uhigh.smashclone.game.PlayerOneKeys;
+import edu.ilstu.uhigh.smashclone.game.PlayerTwoKeys;
+import edu.ilstu.uhigh.smashclone.game.ScreenInterface;
 
 public class GameState implements State, ScreenInterface {
 	// instance variables

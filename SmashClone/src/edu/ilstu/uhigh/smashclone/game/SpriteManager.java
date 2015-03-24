@@ -1,4 +1,4 @@
-package edu.ilstu.uhigh.smashclone;
+package edu.ilstu.uhigh.smashclone.game;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class SpriteManager {
 
 	BufferedImage spriteSheet;
 	int spriteWidth;
-	int spriteHeight;
+	public int spriteHeight;
 	final int BUFFER_LIMIT = 2;
 	int rows, columns;
 	ArrayList<Integer> animQueue;
