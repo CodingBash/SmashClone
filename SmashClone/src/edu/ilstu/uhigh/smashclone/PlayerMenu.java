@@ -27,10 +27,10 @@ public class PlayerMenu implements Menu {
 	private int[] CharacterChoice = new int[2];
 	public PlayerMenu() {
 		super();
-		characters1 = Panel.control.characters.getCharacters1();
-		characters2 = Panel.control.characters.getCharacters2();
-		CharacterChoice[0] = characters1.indexOf(Panel.control.characters.currentplayers[0]);
-		CharacterChoice[1] = characters2.indexOf(Panel.control.characters.currentplayers[1]);
+		characters1 = ((GameState)Panel.control.states.get(Panel.control.GAMESTATE)).characters.getCharacters1();
+		characters2 = ((GameState)Panel.control.states.get(Panel.control.GAMESTATE)).characters.getCharacters2();
+		CharacterChoice[0] = characters1.indexOf(((GameState)Panel.control.states.get(Panel.control.GAMESTATE)).characters.currentplayers[0]);
+		CharacterChoice[1] = characters2.indexOf(((GameState)Panel.control.states.get(Panel.control.GAMESTATE)).characters.currentplayers[1]);
 		options = new ArrayList<String>();
 		options.add(BACKINDEX, "BACK");
 		options.add(HOMEINDEX, "Home");
@@ -89,10 +89,10 @@ public class PlayerMenu implements Menu {
 			Panel.control.menu.setMenu(MenuState.OPTIONMENU);
 		} else if(currentChoice == 2)
 		{
-			Panel.control.characters.currentplayers[0] = characters1.get(CharacterChoice[0]);
+			((GameState)Panel.control.states.get(Panel.control.GAMESTATE)).characters.currentplayers[0] = characters1.get(CharacterChoice[0]);
 		} else if(currentChoice == 3)
 		{
-			Panel.control.characters.currentplayers[1] = characters2.get(CharacterChoice[1]);
+			((GameState)Panel.control.states.get(Panel.control.GAMESTATE)).characters.currentplayers[1] = characters2.get(CharacterChoice[1]);
 		}
 	}
 

@@ -8,7 +8,7 @@ public class GameState implements State, ScreenInterface {
 	// instance variables
 	boolean pause, quit;
 	Controllable players[];
-	
+	public CharacterManager characters;
 	// constructor
 	public GameState() {
 		super();
@@ -21,12 +21,7 @@ public class GameState implements State, ScreenInterface {
 		pause = false;
 		quit = false;
 		
-		
-		//Create Players
-		players = new Controllable[Panel.control.characters.MAXPLAYERS];
-	
-		players[0] = Panel.control.characters.currentplayers[0];
-		players[1] = Panel.control.characters.currentplayers[1];
+		characters = new CharacterManager();
 	}
 
 

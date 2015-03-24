@@ -17,7 +17,7 @@ public class CharacterManager {
 				
 		allInputs[0] = new PlayerOneKeys();
 		allInputs[1] = new PlayerTwoKeys();
-		
+		System.out.println("Making the Characters");
 		characters1 = new ArrayList<Controllable>();
 		characters2 = new ArrayList<Controllable>();
 		// Add created characters twice for each set of keys

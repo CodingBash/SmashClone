@@ -8,11 +8,10 @@ import java.util.ArrayList;
 public class ControlManager {
 
 	//Contains all created characters
-	public CharacterManager characters;
 	//
 	//
 	// List contains all the states within the game
-	private ArrayList<State> states;
+	public ArrayList<State> states;
 	//
 	//
 	// Current state index that the control is operating on
@@ -36,7 +35,7 @@ public class ControlManager {
 		states.add(MENUSTATE, menu);
 		states.add(GAMESTATE, game);
 		currentState = MENUSTATE;
-		characters = new CharacterManager();
+		
 	}
 
 	// setState()
