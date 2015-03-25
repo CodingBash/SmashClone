@@ -1,4 +1,4 @@
-package edu.ilstu.uhigh.smashclone;
+package edu.ilstu.uhigh.smashclone.menu;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -6,8 +6,9 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import edu.ilstu.uhigh.smashclone.Panel;
-import edu.ilstu.uhigh.smashclone.ControlManager;
+
+import edu.ilstu.uhigh.smashclone.control.ControlManager;
+import edu.ilstu.uhigh.smashclone.view.Panel;
 
 public class GeneralMenu implements Menu {
 

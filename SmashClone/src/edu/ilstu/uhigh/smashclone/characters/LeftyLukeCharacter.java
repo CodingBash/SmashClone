@@ -1,42 +1,51 @@
-package edu.ilstu.uhigh.smashclone;
-
-import edu.ilstu.uhigh.smashclone.KeyProcessor;
+package edu.ilstu.uhigh.smashclone.characters;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
+
+import edu.ilstu.uhigh.smashclone.game.SpriteManager;
+import edu.ilstu.uhigh.smashclone.processors.KeyProcessor;
 
 /* Character is the generic class that gives the default data that
  * other characters will have (which will extend this class)
  */
-public class TestCharacter implements Controllable {
+public class LeftyLukeCharacter extends AbstractCharacter {
 	//
 	//
 	// Character's position variables
-	int xPos, yPos;
+	private int xPos, yPos;
 	//
 	//
 	// Chracter's delta xPos value
-	int velocity;
+	private int velocity;
+	private static final int RESCALE = 3;
 	//
 	//
 	// Essential objects to the characters
-	SpriteManager sprite;
-	KeyProcessor keyButtons;
+	private SpriteManager sprite;
+	private KeyProcessor keyButtons;
 	boolean keyInput[];
 	//
 	//
 	// Animation sequences for the characters spritesheets
-	final int[] walkDown = { 0, 1, 2, 3, 4, 5 };
-	final int[] walkUp = { 24, 25, 26, 27, 28, 29 };
-	final int[] walkLeft = { 12, 13, 14, 15, 16, 17 };
-	final int[] walkRight = { 36, 37, 38, 39, 40, 41, 42 };
+	// final int[] walkDown = { 0, 1, 2, 3, 4, 5 };
+	// final int[] walkUp = { 24, 25, 26, 27, 28, 29 };
+	final int[] walkLeft = { 4, 5, 6, 7 };
+	final int[] walkRight = { 0, 1, 2, 3 };
 
 	// Constructor: Sets the positions, velocity, spritesheet, and key buttons
-	public TestCharacter(int x, int y, KeyProcessor keyButtons) {
+	public LeftyLukeCharacter() {
+		sprite = new SpriteManager("LeftyLukeSpriteSheet.png", 16, 16);
+		keyInput = new boolean[6];
+		velocity = 3;
+	}
+
+	public LeftyLukeCharacter(int x, int y, KeyProcessor keyButtons) {
+		sprite = new SpriteManager("LeftyLukeSpriteSheet.png", 16, 16);
 		xPos = x;
-		yPos = y;
-		velocity = 5;
-		sprite = new SpriteManager("GoblinWalk.png", 126, 170);
+		yPos = y - (sprite.spriteHeight * RESCALE);
+		velocity = 3;
 		this.keyButtons = keyButtons;
 		keyInput = new boolean[6];
 	}
@@ -45,7 +54,10 @@ public class TestCharacter implements Controllable {
 	// PRECONDITION: The SpriteManager must be bug-free
 	// POSTCONDITION: draws the current frame onto the screen
 	public void draw(Graphics g) {
-		g.drawImage(sprite.currentFrame(), xPos, yPos, null);
+		g.drawImage(sprite.currentFrame(), xPos, yPos, xPos + RESCALE
+				* sprite.currentFrame().getWidth(), yPos + RESCALE
+				* sprite.currentFrame().getHeight(), 0, 0, 16, 16, null);
+
 	}
 
 	// update()
@@ -55,14 +67,11 @@ public class TestCharacter implements Controllable {
 		// Update the spritesheet frame
 		sprite.update();
 		// Update movement based on directional booleans
-		if (keyInput[KeyProcessor.UP]) {
-			yPos -= velocity;
-			sprite.animate(walkUp);
-		}
-		if (keyInput[KeyProcessor.DOWN]) {
-			yPos += velocity;
-			sprite.animate(walkDown);
-		}
+		/*
+		 * if (keyInput[KeyProcessor.UP]) { yPos -= velocity;
+		 * sprite.animate(walkUp); } if (keyInput[KeyProcessor.DOWN]) { yPos +=
+		 * velocity; sprite.animate(walkDown); }
+		 */
 		if (keyInput[KeyProcessor.LEFT]) {
 			xPos -= velocity;
 			sprite.animate(walkLeft);
@@ -90,5 +99,23 @@ public class TestCharacter implements Controllable {
 			keyInput[KeyProcessor.BUTTONA] = pressed;
 		if (k.getKeyCode() == keyButtons.keys[KeyProcessor.BUTTONB])
 			keyInput[KeyProcessor.BUTTONB] = pressed;
+	}
+
+	public void setKeys(KeyProcessor keys) {
+		this.keyButtons = keys;
+	}
+
+	public void setPosition(int x, int y) {
+		this.xPos = x;
+		this.yPos = y - (sprite.spriteHeight * RESCALE);
+	}
+
+	public void setPosition(Point pos) {
+		this.xPos = pos.x;
+		this.yPos = pos.y - (sprite.spriteHeight * RESCALE);
+	}
+
+	public Point getPosition() {
+		return new Point(this.xPos, this.yPos);
 	}
 }

@@ -1,4 +1,4 @@
-package edu.ilstu.uhigh.smashclone;
+package edu.ilstu.uhigh.smashclone.processors;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -19,12 +19,12 @@ public class KeyProcessor {
 	// Also indexes used in KeyProcessor classes AND
 	// the character objects! Don't screw this up otherwise
 	// your input will be messed up!
-	protected static int UP = 0;
-	protected static int DOWN = 1;
-	protected static int LEFT = 2;
-	protected static int RIGHT = 3;
-	protected static int BUTTONA = 4;
-	protected static int BUTTONB = 5;
+	public static int UP = 0;
+	public static int DOWN = 1;
+	public static int LEFT = 2;
+	public static int RIGHT = 3;
+	public static int BUTTONA = 4;
+	public static int BUTTONB = 5;
 
 	// Constructor: Initializes empty key list (this constructor
 	// should be rarely called)

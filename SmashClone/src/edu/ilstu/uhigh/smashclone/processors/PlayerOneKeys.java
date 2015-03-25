@@ -1,4 +1,4 @@
-package edu.ilstu.uhigh.smashclone;
+package edu.ilstu.uhigh.smashclone.processors;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
