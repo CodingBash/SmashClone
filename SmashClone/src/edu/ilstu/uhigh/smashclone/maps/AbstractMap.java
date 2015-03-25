@@ -16,8 +16,12 @@ public abstract class AbstractMap implements NonInteractable {
 	private ArrayList<Rectangle> platforms;
 	//
 	//
+	//
+	public static final int FLOOR = 0;
+	//
+	//
 	//Background image
-	private BufferedImage bg_image;
+	public static BufferedImage bg_image;
 	//
 	//
 	//Icon (Used for HUD and menu)

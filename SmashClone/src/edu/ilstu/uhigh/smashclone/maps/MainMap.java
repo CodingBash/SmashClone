@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 import edu.ilstu.uhigh.smashclone.view.Panel;
 
@@ -18,10 +22,6 @@ public class MainMap extends AbstractMap {
 	private ArrayList<Rectangle> platforms;
 	//
 	//
-	// Index of the "floor". The floor usually determines initial spawns
-	public static final int FLOOR = 0;
-	//
-	//
 	// List of spawns as positional points
 	public ArrayList<Point> spawns;
 
@@ -29,6 +29,13 @@ public class MainMap extends AbstractMap {
 	 * Constructor for the map
 	 */
 	public MainMap() {
+		try {
+			bg_image = ImageIO.read(getClass().getResource(
+					"/edu/ilstu/uhigh/smashclone/resources/" + "MainMapBackground.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// Initialize the platforms
 		platforms = new ArrayList<Rectangle>();
 		// Add the floor to the map
@@ -62,11 +69,13 @@ public class MainMap extends AbstractMap {
 	 */
 	@Override
 	public void draw(Graphics g) {
+		g.drawImage(bg_image, 0, 0, null, null);
 		// Iterate through the platforms
 		for (Rectangle p : platforms)
 			// Send the graphics and platform to a method to draw individual
 			// platform
 			drawPlatform(g, p);
+		
 
 	}
 
