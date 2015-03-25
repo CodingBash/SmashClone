@@ -14,17 +14,24 @@ import edu.ilstu.uhigh.smashclone.processors.PlayerTwoKeys;
  * as assigning the inputs to characters
  */
 public class CharacterManager {
+	//
+	//
 	// List that contains all available characters
 	public ArrayList<AbstractCharacter> allCharacters;
+	//
+	//
 	// List that contains selected characters that should play
 	// Not limited by a max of two in case of adding extra players
 	public ArrayList<AbstractCharacter> playingCharacters;
+	//
+	//
 	// Array of inputs for each separate character
 	public ArrayList<KeyProcessor> allInputs; // Make sure the index corresponds
 												// to the player index
 	// Variable that declares the max players on the field
 	public static final int MAXPLAYERS = 2;
-	
+	//
+	//
 	//Index of all the characters in the list. Used for reference in other classes
 	//for easy access
 	public static final int LEFTYLUKE = 0;

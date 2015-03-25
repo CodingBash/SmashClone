@@ -1,18 +1,19 @@
 package edu.ilstu.uhigh.smashclone.control;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import edu.ilstu.uhigh.smashclone.game.CharacterManager;
 import edu.ilstu.uhigh.smashclone.game.Controllable;
 import edu.ilstu.uhigh.smashclone.game.MapManager;
 import edu.ilstu.uhigh.smashclone.game.ScreenInterface;
-import edu.ilstu.uhigh.smashclone.maps.MainMap;
+import edu.ilstu.uhigh.smashclone.maps.AbstractMap;
 
 public class GameState implements State, ScreenInterface {
 	// instance variables
 	boolean pause, quit;
-	public int currentMap;
 	public CharacterManager characters;
 	public MapManager maps;
 
@@ -24,28 +25,25 @@ public class GameState implements State, ScreenInterface {
 
 	@Override
 	public void init() {
-		// Create ScreenInterface
 		pause = false;
 		quit = false;
-		currentMap = 0;
 		maps = new MapManager();
+		maps.currentMap = 0;
 		characters = new CharacterManager();
-		characters.setCharacter(0,characters.allCharacters.get(characters.LEFTYLUKE));
-		characters.setCharacter(1, characters.allCharacters.get(characters.GANGSTER));
+		characters.setCharacter(0,characters.allCharacters.get(CharacterManager.LEFTYLUKE));
+		characters.setCharacter(1, characters.allCharacters.get(CharacterManager.GANGSTER));
 		spawnCharacters();
 	}
 
 	private void spawnCharacters() {
 		for (int i = 0; i < characters.playingCharacters.size(); i++) {
-			characters.playingCharacters.get(i).setPosition(
-					maps.allMaps.get(currentMap).spawns.get(i));
+			characters.playingCharacters.get(i).setPosition(maps.allMaps.get(maps.currentMap).getSpawn(i));
 		}
-
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		for (MainMap m : maps.allMaps) {
+		for (AbstractMap m : maps.allMaps) {
 			m.draw(g);
 		}
 		for (Controllable c : characters.playingCharacters) {
