@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class ControlManager {
 
 	// List contains all the states within the game
-	private ArrayList<State> states;
+	 public ArrayList<State> states;
 	//
 	//
 	// Current state index that the control is operating on

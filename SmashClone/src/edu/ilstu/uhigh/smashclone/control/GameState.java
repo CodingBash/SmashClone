@@ -8,7 +8,6 @@ import edu.ilstu.uhigh.smashclone.game.Controllable;
 import edu.ilstu.uhigh.smashclone.game.MapManager;
 import edu.ilstu.uhigh.smashclone.game.ScreenInterface;
 import edu.ilstu.uhigh.smashclone.maps.MainMap;
-import edu.ilstu.uhigh.smashclone.view.Panel;
 
 public class GameState implements State, ScreenInterface {
 	// instance variables
@@ -31,8 +30,8 @@ public class GameState implements State, ScreenInterface {
 		currentMap = 0;
 		maps = new MapManager();
 		characters = new CharacterManager();
-		characters.setCharacter(0, characters.allCharacters.get((GameState)Panel.control.get(Panel.control.GAMESTATE)));
-		characters.setCharacter(1, characters.allCharacters.get(1));
+		characters.setCharacter(0,characters.allCharacters.get(characters.LEFTYLUKE));
+		characters.setCharacter(1, characters.allCharacters.get(characters.GANGSTER));
 		spawnCharacters();
 	}
 
