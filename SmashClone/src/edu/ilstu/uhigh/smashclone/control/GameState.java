@@ -5,9 +5,10 @@ import java.awt.event.KeyEvent;
 
 import edu.ilstu.uhigh.smashclone.game.CharacterManager;
 import edu.ilstu.uhigh.smashclone.game.Controllable;
-import edu.ilstu.uhigh.smashclone.game.Map;
 import edu.ilstu.uhigh.smashclone.game.MapManager;
 import edu.ilstu.uhigh.smashclone.game.ScreenInterface;
+import edu.ilstu.uhigh.smashclone.maps.MainMap;
+import edu.ilstu.uhigh.smashclone.view.Panel;
 
 public class GameState implements State, ScreenInterface {
 	// instance variables
@@ -15,6 +16,7 @@ public class GameState implements State, ScreenInterface {
 	public int currentMap;
 	public CharacterManager characters;
 	public MapManager maps;
+
 	// constructor
 	public GameState() {
 		super();
@@ -23,32 +25,31 @@ public class GameState implements State, ScreenInterface {
 
 	@Override
 	public void init() {
-		//Create ScreenInterface
+		// Create ScreenInterface
 		pause = false;
 		quit = false;
 		currentMap = 0;
 		maps = new MapManager();
 		characters = new CharacterManager();
-		characters.setCharacter(0, characters.allCharacters.get(0));
+		characters.setCharacter(0, characters.allCharacters.get((GameState)Panel.control.get(Panel.control.GAMESTATE)));
 		characters.setCharacter(1, characters.allCharacters.get(1));
 		spawnCharacters();
 	}
 
-
 	private void spawnCharacters() {
-		for(int i = 0; i<characters.playingCharacters.size(); i++){
+		for (int i = 0; i < characters.playingCharacters.size(); i++) {
 			characters.playingCharacters.get(i).setPosition(
 					maps.allMaps.get(currentMap).spawns.get(i));
 		}
-		
+
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		for(Map m: maps.allMaps){
+		for (MainMap m : maps.allMaps) {
 			m.draw(g);
 		}
-		for(Controllable c: characters.playingCharacters){
+		for (Controllable c : characters.playingCharacters) {
 			c.draw(g);
 		}
 	}
@@ -57,12 +58,12 @@ public class GameState implements State, ScreenInterface {
 	public void update() {
 		// TODO Auto-generated method stub
 		if (!quit && !pause) {
-			for(Controllable c : characters.playingCharacters){
+			for (Controllable c : characters.playingCharacters) {
 				c.update();
 			}
 		}
-		System.out.println(characters.playingCharacters.get(0).getPos());
-		System.out.println(characters.playingCharacters.get(1).getPos());
+		//System.out.println(characters.playingCharacters.get(0).getPosition());
+		//System.out.println(characters.playingCharacters.get(1).getPosition());
 	}
 
 	public void pause() {
@@ -72,27 +73,26 @@ public class GameState implements State, ScreenInterface {
 	@Override
 	public void quit() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent k) {
-		for(Controllable c: characters.playingCharacters){
+		for (Controllable c : characters.playingCharacters) {
 			c.sendKeyInput(k, true);
 		}
-		
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent k) {
-		for(Controllable c: characters.playingCharacters){
+		for (Controllable c : characters.playingCharacters) {
 			c.sendKeyInput(k, false);
 		}
-		
+
 	}
 
-	//So what is the quit variable used for?
-	//Exiting the state or exiting the game completely?
-	
+	// So what is the quit variable used for?
+	// Exiting the state or exiting the game completely?
+
 }

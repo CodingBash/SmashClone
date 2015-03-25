@@ -3,6 +3,7 @@ package edu.ilstu.uhigh.smashclone.game;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 
 /*
@@ -32,7 +33,7 @@ public class SpriteManager {
 		animQueue = new ArrayList<Integer>();
 		try {
 			spriteSheet = ImageIO.read(getClass().getResource(
-					"/resources/" + file));
+					"/edu/ilstu/uhigh/smashclone/resources/" + file));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

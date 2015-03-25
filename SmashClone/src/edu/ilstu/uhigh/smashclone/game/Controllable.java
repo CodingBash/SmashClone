@@ -3,6 +3,8 @@ package edu.ilstu.uhigh.smashclone.game;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+import edu.ilstu.uhigh.smashclone.processors.KeyProcessor;
+
 /* Controllable defines an interface for character objects
  * to be controlled by the game engine
  */

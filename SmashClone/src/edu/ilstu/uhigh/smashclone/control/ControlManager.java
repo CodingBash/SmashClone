@@ -60,7 +60,7 @@ public class ControlManager {
 	public void keyPressed(KeyEvent k) {
 		states.get(currentState).keyPressed(k);
 	}
-	
+
 	// keyReleased()
 	// PRECONDITION: Provide a KeyEvent (from the InputAdapter class)
 	// POSTCONDITION: Send the key input to the current state
@@ -68,5 +68,5 @@ public class ControlManager {
 		states.get(currentState).keyReleased(k);
 	}
 
-	//TODO: Handle passing mouse inputs (if needed in the future)
+	// TODO: Handle passing mouse inputs (if needed in the future)
 }
