@@ -2,7 +2,10 @@ package edu.ilstu.uhigh.smashclone.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 import edu.ilstu.uhigh.smashclone.view.Panel;
 
@@ -14,12 +17,25 @@ public class Map implements NonInteractable {
 	// Platform variables will begin with a p_
 	// A map must have a floor platform
 	// TODO: Array of Platforms. First platform in the array should be the main floor.
-	private Rectangle p_floor;
-
+	private ArrayList<Rectangle> platforms;
+	public static final int FLOOR = 0;
+	public ArrayList<Point> spawns;
+	
 	public Map() {
-		p_floor = new Rectangle(0, Panel.HEIGHT * Panel.SCALE - 20, Panel.WIDTH
-				* Panel.SCALE + 20, 20); // TODO: strange offset on width(had to
-											// add 20)
+		platforms = new ArrayList<Rectangle>();
+		platforms.add(0, new Rectangle(0, Panel.HEIGHT * Panel.SCALE - 20, Panel.WIDTH
+				* Panel.SCALE + 20, 20)); // TODO: strange offset on width(had to
+										// add 20)
+		spawns = new ArrayList<Point>();
+		initSpawns();
+	}
+
+	private void initSpawns() {
+		spawns.add(0, new Point(100,platforms.get(FLOOR).y));
+		spawns.add(1,new Point(500,platforms.get(FLOOR).y));
+		//Only two points for spawns. If more than two characters per game
+		//is implemented, must add more spawns otherwise NullPointerException
+		
 	}
 
 	public Map(Rectangle p_floor) {
@@ -28,7 +44,8 @@ public class Map implements NonInteractable {
 
 	@Override
 	public void draw(Graphics g) {
-		drawPlatform(g, p_floor);
+		for(Rectangle p : platforms)
+			drawPlatform(g, p);
 
 	}
 
@@ -38,6 +55,6 @@ public class Map implements NonInteractable {
 	}
 
 	public Rectangle getFloor(){
-		return this.p_floor;
+		return this.platforms.get(FLOOR);
 	}
 }

@@ -3,23 +3,18 @@ package edu.ilstu.uhigh.smashclone.control;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-import edu.ilstu.uhigh.smashclone.characters.TestCharacter;
 import edu.ilstu.uhigh.smashclone.game.CharacterManager;
 import edu.ilstu.uhigh.smashclone.game.Controllable;
-import edu.ilstu.uhigh.smashclone.game.KeyProcessor;
 import edu.ilstu.uhigh.smashclone.game.Map;
-import edu.ilstu.uhigh.smashclone.game.PlayerOneKeys;
-import edu.ilstu.uhigh.smashclone.game.PlayerTwoKeys;
+import edu.ilstu.uhigh.smashclone.game.MapManager;
 import edu.ilstu.uhigh.smashclone.game.ScreenInterface;
-import edu.ilstu.uhigh.smashclone.control.*;
 
 public class GameState implements State, ScreenInterface {
 	// instance variables
 	boolean pause, quit;
-	public static final int MAXMAPS = 1;
 	public int currentMap;
 	public CharacterManager characters;
-	Map maps[]; //Changed from NonInterable to specific Map to operate on specific maps and map methods
+	public MapManager maps;
 	// constructor
 	public GameState() {
 		super();
@@ -32,20 +27,25 @@ public class GameState implements State, ScreenInterface {
 		pause = false;
 		quit = false;
 		currentMap = 0;
-		//Create maps
-		//TODO: When loading, only need to load one map, not all (for efficiency)
-		maps = new Map[MAXMAPS];
-		maps[0] = new Map();
-		//Create KeyInputs
+		maps = new MapManager();
 		characters = new CharacterManager();
 		characters.setCharacter(0, characters.allCharacters.get(0));
-		characters.setCharacter(1, characters.allCharacters.get(0));
+		characters.setCharacter(1, characters.allCharacters.get(1));
+		spawnCharacters();
 	}
 
 
+	private void spawnCharacters() {
+		for(int i = 0; i<characters.playingCharacters.size(); i++){
+			characters.playingCharacters.get(i).setPosition(
+					maps.allMaps.get(currentMap).spawns.get(i));
+		}
+		
+	}
+
 	@Override
 	public void draw(Graphics g) {
-		for(Map m: maps){
+		for(Map m: maps.allMaps){
 			m.draw(g);
 		}
 		for(Controllable c: characters.playingCharacters){
@@ -61,6 +61,8 @@ public class GameState implements State, ScreenInterface {
 				c.update();
 			}
 		}
+		System.out.println(characters.playingCharacters.get(0).getPos());
+		System.out.println(characters.playingCharacters.get(1).getPos());
 	}
 
 	public void pause() {

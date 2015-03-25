@@ -1,11 +1,12 @@
 package edu.ilstu.uhigh.smashclone.characters;
 
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.KeyEvent;
+
 import edu.ilstu.uhigh.smashclone.game.Controllable;
 import edu.ilstu.uhigh.smashclone.game.KeyProcessor;
 import edu.ilstu.uhigh.smashclone.game.SpriteManager;
-
-import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 
 /* Character is the generic class that gives the default data that
  * other characters will have (which will extend this class)
@@ -14,7 +15,7 @@ public class TestCharacter implements Controllable {
 	//
 	//
 	// Character's position variables
-	int xPos, yPos;
+	private int xPos, yPos;
 	//
 	//
 	// Chracter's delta xPos value
@@ -109,7 +110,14 @@ public class TestCharacter implements Controllable {
 		this.keyButtons = keys;
 	}
 	public void setPosition(int x, int y){
-		xPos = x;
-		yPos = y-(sprite.spriteHeight*RESCALE);
+		this.xPos = x;
+		this.yPos = y-(sprite.spriteHeight*RESCALE);
+	}
+	public void setPosition(Point pos){
+		this.xPos = pos.x;
+		this.yPos = pos.y-(sprite.spriteHeight*RESCALE);
+	}
+	public Point getPos(){
+		return new Point(this.xPos,this.yPos);
 	}
 }
