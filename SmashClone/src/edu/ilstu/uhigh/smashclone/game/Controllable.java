@@ -32,4 +32,5 @@ public interface Controllable {
 	 */
 	public void sendKeyInput(KeyEvent k, boolean pressed);
 
+	public void setKeys(KeyProcessor keys);
 }

@@ -2,25 +2,23 @@ package edu.ilstu.uhigh.smashclone.control;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import edu.ilstu.uhigh.smashclone.characters.TestCharacter;
+import edu.ilstu.uhigh.smashclone.game.CharacterManager;
 import edu.ilstu.uhigh.smashclone.game.Controllable;
 import edu.ilstu.uhigh.smashclone.game.KeyProcessor;
 import edu.ilstu.uhigh.smashclone.game.Map;
 import edu.ilstu.uhigh.smashclone.game.PlayerOneKeys;
 import edu.ilstu.uhigh.smashclone.game.PlayerTwoKeys;
 import edu.ilstu.uhigh.smashclone.game.ScreenInterface;
+import edu.ilstu.uhigh.smashclone.control.*;
 
 public class GameState implements State, ScreenInterface {
 	// instance variables
 	boolean pause, quit;
-	KeyProcessor allInputs[]; //Make sure the index corresponds to the player index
-	public static final int MAXPLAYERS = 2;
-	Controllable players[];
-	
 	public static final int MAXMAPS = 1;
 	public int currentMap;
+	public CharacterManager characters;
 	Map maps[]; //Changed from NonInterable to specific Map to operate on specific maps and map methods
 	// constructor
 	public GameState() {
@@ -39,16 +37,9 @@ public class GameState implements State, ScreenInterface {
 		maps = new Map[MAXMAPS];
 		maps[0] = new Map();
 		//Create KeyInputs
-		allInputs = new KeyProcessor[MAXPLAYERS];
-		
-		allInputs[0] = new PlayerOneKeys();
-		allInputs[1] = new PlayerTwoKeys();
-		
-		//Create Players
-		players = new Controllable[MAXPLAYERS];
-		
-		players[0] = new TestCharacter(100, maps[currentMap].getFloor().y, allInputs[0]);
-		players[1] = new TestCharacter(500, maps[currentMap].getFloor().y, allInputs[1]);
+		characters = new CharacterManager();
+		characters.setCharacter(0, characters.allCharacters.get(0));
+		characters.setCharacter(1, characters.allCharacters.get(0));
 	}
 
 
@@ -57,7 +48,7 @@ public class GameState implements State, ScreenInterface {
 		for(Map m: maps){
 			m.draw(g);
 		}
-		for(Controllable c: players){
+		for(Controllable c: characters.playingCharacters){
 			c.draw(g);
 		}
 	}
@@ -66,7 +57,7 @@ public class GameState implements State, ScreenInterface {
 	public void update() {
 		// TODO Auto-generated method stub
 		if (!quit && !pause) {
-			for(Controllable c : players){
+			for(Controllable c : characters.playingCharacters){
 				c.update();
 			}
 		}
@@ -84,7 +75,7 @@ public class GameState implements State, ScreenInterface {
 
 	@Override
 	public void keyPressed(KeyEvent k) {
-		for(Controllable c: players){
+		for(Controllable c: characters.playingCharacters){
 			c.sendKeyInput(k, true);
 		}
 		
@@ -93,7 +84,7 @@ public class GameState implements State, ScreenInterface {
 
 	@Override
 	public void keyReleased(KeyEvent k) {
-		for(Controllable c: players){
+		for(Controllable c: characters.playingCharacters){
 			c.sendKeyInput(k, false);
 		}
 		

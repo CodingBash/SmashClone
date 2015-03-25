@@ -24,7 +24,7 @@ public class TestCharacter implements Controllable {
 	//
 	// Essential objects to the characters
 	SpriteManager sprite;
-	KeyProcessor keyButtons;
+	private KeyProcessor keyButtons;
 	boolean keyInput[];
 	//
 	//
@@ -35,6 +35,12 @@ public class TestCharacter implements Controllable {
 	final int[] walkRight = { 0, 1, 2, 3};
 
 	// Constructor: Sets the positions, velocity, spritesheet, and key buttons
+	public TestCharacter(){
+		sprite = new SpriteManager("LeftyLukeSpriteSheet.png", 16, 16);
+		keyInput = new boolean[6];
+		velocity = 3;
+	}
+	
 	public TestCharacter(int x, int y, KeyProcessor keyButtons) {
 		sprite = new SpriteManager("LeftyLukeSpriteSheet.png", 16, 16);
 		xPos = x;
@@ -97,5 +103,13 @@ public class TestCharacter implements Controllable {
 			keyInput[KeyProcessor.BUTTONA] = pressed;
 		if (k.getKeyCode() == keyButtons.keys[KeyProcessor.BUTTONB])
 			keyInput[KeyProcessor.BUTTONB] = pressed;
+	}
+	
+	public void setKeys(KeyProcessor keys){
+		this.keyButtons = keys;
+	}
+	public void setPosition(int x, int y){
+		xPos = x;
+		yPos = y-(sprite.spriteHeight*RESCALE);
 	}
 }
