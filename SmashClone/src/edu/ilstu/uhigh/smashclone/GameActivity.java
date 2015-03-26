@@ -8,7 +8,6 @@ public class GameActivity extends Activity {
 	List<Interactive> objects;
 	List<NonInteractive> scenery;
 
-	// TODO figure out how to pass character selections
 	public GameActivity(List<Controllable> p, List<Interactive> o, List<NonInteractive> s) {
 		players = p;
 		objects = o;
