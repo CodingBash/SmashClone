@@ -16,15 +16,6 @@ import edu.ilstu.uhigh.smashclone.view.Panel;
  * MainMap will include the image of the map as well as positions of platforms, positions of spawns, etc.
  */
 public class MainMap extends AbstractMap {
-	//
-	//
-	// List of platforms. The "floor" is denoted as the index defined.
-	private ArrayList<Rectangle> platforms;
-	//
-	//
-	// List of spawns as positional points
-	public ArrayList<Point> spawns;
-
 	/*
 	 * Constructor for the map
 	 */

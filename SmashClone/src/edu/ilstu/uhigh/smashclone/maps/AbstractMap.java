@@ -13,23 +13,23 @@ public abstract class AbstractMap implements NonInteractable {
 	//
 	//
 	//List of platforms in the maps
-	private ArrayList<Rectangle> platforms;
+	ArrayList<Rectangle> platforms;
 	//
 	//
 	//
-	public static final int FLOOR = 0;
+	static final int FLOOR = 0;
 	//
 	//
 	//Background image
-	public static BufferedImage bg_image;
+	static BufferedImage bg_image;
 	//
 	//
 	//Icon (Used for HUD and menu)
-	private BufferedImage icon;
+	BufferedImage icon;
 	//
 	//
 	//List of spawns
-	public ArrayList<Point> spawns;
+	ArrayList<Point> spawns;
 	//
 	//
 	//

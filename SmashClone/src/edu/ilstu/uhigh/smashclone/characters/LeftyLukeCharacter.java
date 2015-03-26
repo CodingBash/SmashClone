@@ -11,26 +11,7 @@ import edu.ilstu.uhigh.smashclone.processors.KeyProcessor;
  * other characters will have (which will extend this class)
  */
 public class LeftyLukeCharacter extends AbstractCharacter {
-	//
-	//
-	// Character's position variables
-	private int xPos, yPos;
-	//
-	//
-	// Chracter's delta xPos value
-	private int velocity;
-	private static final int RESCALE = 3;
-	//
-	//
-	// Essential objects to the characters
-	private SpriteManager sprite;
-	private KeyProcessor keyButtons;
-	boolean keyInput[];
-	//
-	//
-	// Animation sequences for the characters spritesheets
-	// final int[] walkDown = { 0, 1, 2, 3, 4, 5 };
-	// final int[] walkUp = { 24, 25, 26, 27, 28, 29 };
+	
 	final int[] walkLeft = { 4, 5, 6, 7 };
 	final int[] walkRight = { 0, 1, 2, 3 };
 

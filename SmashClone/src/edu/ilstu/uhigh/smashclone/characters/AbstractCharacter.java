@@ -12,27 +12,29 @@ import edu.ilstu.uhigh.smashclone.processors.KeyProcessor;
  */
 public abstract class AbstractCharacter implements Controllable {
 
-	//Positional variables
-	private int xPos, yPos;
-	//Velocity variable
-	private int velocity;
-	//Sprite sheet
-	private SpriteManager sprite;
-	//Key processor
-	private KeyProcessor keyButtons;
-	//Action booleans
+	// Positional variables
+	int xPos, yPos;
+	// Velocity variable
+	int velocity;
+	// Sprite sheet
+	SpriteManager sprite;
+	// Key processor
+	KeyProcessor keyButtons;
+	// Action booleans
 	boolean keyInput[];
 
-	//Icon (used for menu and HUD)
+	// Icon (used for menu and HUD)
 	public BufferedImage icon;
 
-	//Animation sequences
-	private final int[] walkLeft = {};
-	private final int[] walkRight = {};
+	// Animation sequences
+	final int[] walkLeft = null;
+	final int[] walkRight = null;
 
-	//Set the position
+	//Rescale the image dimensions
+	static final int RESCALE = 3;
+	// Set the position
 	abstract public void setPosition(Point pos);
 
-	//Get the position
+	// Get the position
 	abstract public Point getPosition();
 }
