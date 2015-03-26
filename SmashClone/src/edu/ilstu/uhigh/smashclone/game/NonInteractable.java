@@ -1,4 +1,4 @@
-package edu.ilstu.uhigh.smashclone;
+package edu.ilstu.uhigh.smashclone.game;
 import java.awt.Graphics;
 
 /* NonInteractable defines an object that does not interact with the 
@@ -9,6 +9,6 @@ public interface NonInteractable {
 	 * draw is handed the whole graphics screen to draw on - don't mess it up!
 	 */
 	public void draw(Graphics g);
-	
+
 	
 }

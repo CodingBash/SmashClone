@@ -1,4 +1,4 @@
-package edu.ilstu.uhigh.smashclone;
+package edu.ilstu.uhigh.smashclone.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -6,6 +6,9 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
+
+import edu.ilstu.uhigh.smashclone.control.ControlManager;
+import edu.ilstu.uhigh.smashclone.control.InputAdapter;
 
 @SuppressWarnings("serial")
 public class Panel extends JPanel {
@@ -25,8 +28,8 @@ public class Panel extends JPanel {
 	//
 	//
 	// CONTROL INSTANCES
-	protected static ControlManager control;
-	private InputAdapter ia;
+	public static ControlManager control;
+	public InputAdapter ia;
 
 	// Creates the panel and control framework
 	public Panel() {
@@ -36,7 +39,7 @@ public class Panel extends JPanel {
 		running = true;
 		// Set the panel information
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		setBackground(Color.BLACK);
+		setBackground(Color.GREEN);
 		// Declare the input adapter
 		ia = new InputAdapter(control);
 		// Add the input listeners to the input adapter

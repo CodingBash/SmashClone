@@ -1,8 +1,11 @@
-package edu.ilstu.uhigh.smashclone;
+package edu.ilstu.uhigh.smashclone.control;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import edu.ilstu.uhigh.smashclone.menu.GeneralMenu;
+import edu.ilstu.uhigh.smashclone.menu.Menu;
 
 /* MenuState:
  * State that handles all the menus. Also controls

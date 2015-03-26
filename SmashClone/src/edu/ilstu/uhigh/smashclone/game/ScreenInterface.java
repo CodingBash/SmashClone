@@ -1,4 +1,4 @@
-package edu.ilstu.uhigh.smashclone;
+package edu.ilstu.uhigh.smashclone.game;
 
 //TODO: Update ScreenInterface documentation
 /* ScreenInterface defines an object that has a running screen that
