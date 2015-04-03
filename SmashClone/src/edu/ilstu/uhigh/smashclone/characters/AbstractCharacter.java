@@ -19,28 +19,41 @@ import edu.ilstu.uhigh.smashclone.view.Panel;
  * AbstractCharacter used to define what a character should be. Implements the controllable interface
  */
 public abstract class AbstractCharacter implements Controllable {
-
+	//
 	// Positional variables
 	private int xPos, yPos;
+	//
 	// Velocity variable
 	private int dx;
-	// Sprite sheet
 	private int dy;
+	//
+	// Sprite sheet
 	private SpriteManager sprite;
+	//
 	// Key processor
 	private KeyProcessor keyButtons;
+	//
 	// Action booleans
 	private boolean keyInput[];
 	//
+	// canJump: ability to jump
 	private boolean canJump;
+	//
+	// jumpHeight: The max pixels the character can jump in one setting
 	private int jumpHeight;
+	//
+	// jumpCounter: How much pixels the character has left to jump
 	private int jumpCounter;
-	int count;
-	// Icon (used for menu and HUD)
+	//
+	// count: the amount of frames the animation spritesheet sequence should be multiplied by
+	protected int count;
+	// icon: used for menu and HUD
 	public BufferedImage icon;
 
+	//
+	// animations: list of image sequences for each player action
 	ArrayList<int[]> animations = null;
-	// Animation sequences
+	// Animation sequences with respected indexes
 	int[] walkLeft = null;
 	public final int WALKLEFT = 0;
 	int[] walkRight = null;
@@ -148,9 +161,8 @@ public abstract class AbstractCharacter implements Controllable {
 			//
 			// If the x-coordinate is between the sides of the platforms
 			if (getFoot().x < a.x + a.width && getFoot().x > a.x) {
-				//<
-				if (getFoot().y < a.y && getFoot().y > a.y -
-						a.height) {
+				// <
+				if (getFoot().y < a.y && getFoot().y > a.y - a.height) {
 					return true;
 				}
 				//

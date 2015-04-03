@@ -27,7 +27,7 @@ public class GameState implements State, ScreenInterface {
 		pause = false;
 		quit = false;
 		maps = new MapManager();
-		maps.currentMap = 0;
+		MapManager.currentMap = 0;
 		characters = new CharacterManager();
 		characters.setCharacter(0,
 				characters.allCharacters.get(CharacterManager.LEFTYLUKE));
@@ -36,6 +36,7 @@ public class GameState implements State, ScreenInterface {
 		spawnCharacters();
 	}
 
+	
 	private void spawnCharacters() {
 		for (int i = 0; i < characters.playingCharacters.size(); i++) {
 			characters.playingCharacters.get(i).setPosition(
