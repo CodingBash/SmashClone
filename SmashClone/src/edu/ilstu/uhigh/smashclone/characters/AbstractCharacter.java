@@ -45,7 +45,8 @@ public abstract class AbstractCharacter implements Controllable {
 	// jumpCounter: How much pixels the character has left to jump
 	private int jumpCounter;
 	//
-	// count: the amount of frames the animation spritesheet sequence should be multiplied by
+	// count: the amount of frames the animation spritesheet sequence should be
+	// multiplied by
 	protected int count;
 	// icon: used for menu and HUD
 	public BufferedImage icon;
@@ -88,6 +89,11 @@ public abstract class AbstractCharacter implements Controllable {
 
 	}
 
+	// draw(): Model method for drawing the character
+	// PRECONDITION: character object must have a loaded spritesheet.
+	// PRECONDITION: character's animation sequences must be working
+	// POSTCONDITION: display the current sprite image on the screen (placed in
+	// the right position)
 	public void draw(Graphics g) {
 		g.drawImage(sprite.currentFrame(), xPos, yPos, xPos + RESCALE
 				* Panel.SCALE * sprite.currentFrame().getWidth(), yPos
@@ -102,7 +108,10 @@ public abstract class AbstractCharacter implements Controllable {
 	public void update() {
 		// Update the SpriteSheet image
 		sprite.update();
-		System.out.println(jumpCounter);
+
+		//
+		// BUTTON PRESSES
+		//
 		// If the "LEFT" Button is pressed
 		if (keyInput[KeyProcessor.LEFT]) {
 			xPos -= dx;
@@ -113,31 +122,38 @@ public abstract class AbstractCharacter implements Controllable {
 			xPos += dx;
 			sprite.animate(animations.get(WALKRIGHT));
 		}
+		
+		checkJump(); // Check if the character can jump
 		// If the "UP" Button is pressed
 		if (keyInput[KeyProcessor.UP]) {
 			yPos -= dy;
 			jumpCounter += dy;
 		}
 
-		if (checkPanelCollision() == false && keyInput[KeyProcessor.UP] == false) {
+		// Collision detection conditions
+		if (checkPanelCollision() == false
+				&& keyInput[KeyProcessor.UP] == false) { // If in the air and not jumping
 			// Player physics to bring player down
 			// TODO: Add acceleration/gravity
-			yPos += dy;
-		} else if (checkPanelCollision() == true) {
-			jumpCounter = 0;
-			canJump = true;
+			yPos += dy; // yPos goes DOWN based on delta y
+		} else if (checkPanelCollision() == true) { // If on a platform
+			jumpCounter = 0; // JumpCounter is reseted
+			canJump = true; // canJump set to true
 		}
-		checkJump();
+		
+		
 
 	}
 
+	// checkJump(): Check if the character can jump
 	private void checkJump() {
-
+		// If jumpCounter is 0 out of jumpHeight
 		if (jumpCounter == 0)
-			canJump = true;
-		if (jumpCounter > jumpHeight) {
-			canJump = false;
-			keyInput[KeyProcessor.UP] = false;
+			canJump = true; //CanJump is set to true
+		//If jumpCounter surpassed the jumpHeight limit
+		if (jumpCounter > jumpHeight) { 
+			canJump = false; //canJump is false
+			keyInput[KeyProcessor.UP] = false; // Amend all UP presses
 		}
 
 	}
