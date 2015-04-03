@@ -45,7 +45,6 @@ public abstract class AbstractCharacter implements Controllable {
 	public final int WALKLEFT = 0;
 	int[] walkRight = null;
 	public final int WALKRIGHT = 1;
-	
 
 	// Rescale the image dimensions
 	private final int RESCALE = 2;
@@ -88,64 +87,82 @@ public abstract class AbstractCharacter implements Controllable {
 	// PRECONDITION: SpriteManager bug-free, key input works
 	// POSTCONDITION: Updates movement based on directional booleans
 	public void update() {
-		// Update the spritesheet frame
+		// Update the SpriteSheet image
 		sprite.update();
-		// Update movement based on directional booleans
-		/*
-		 * if (keyInput[KeyProcessor.UP]) { yPos -= velocity;
-		 * sprite.animate(walkUp); } if (keyInput[KeyProcessor.DOWN]) { yPos +=
-		 * velocity; sprite.animate(walkDown); }
-		 */
+		System.out.println(jumpCounter);
+		// If the "LEFT" Button is pressed
 		if (keyInput[KeyProcessor.LEFT]) {
 			xPos -= dx;
 			sprite.animate(animations.get(WALKLEFT));
 		}
+		// If the "RIGHT" Button is pressed
 		if (keyInput[KeyProcessor.RIGHT]) {
 			xPos += dx;
 			sprite.animate(animations.get(WALKRIGHT));
 		}
-		if(keyInput[KeyProcessor.UP]) {
-			yPos-= dy;
+		// If the "UP" Button is pressed
+		if (keyInput[KeyProcessor.UP]) {
+			yPos -= dy;
 			jumpCounter += dy;
 		}
-		if(checkPanelCollision()){
+
+		if (checkPanelCollision() == false && keyInput[KeyProcessor.UP] == false) {
+			// Player physics to bring player down
+			// TODO: Add acceleration/gravity
 			yPos += dy;
-			jumpCounter = (jumpCounter-dy< 0) ? 0 : jumpCounter - dy;
+		} else if (checkPanelCollision() == true) {
+			jumpCounter = 0;
+			canJump = true;
 		}
 		checkJump();
+
 	}
 
 	private void checkJump() {
 
-		if(jumpCounter == 0)
+		if (jumpCounter == 0)
 			canJump = true;
-		if(jumpCounter > jumpHeight){
+		if (jumpCounter > jumpHeight) {
 			canJump = false;
 			keyInput[KeyProcessor.UP] = false;
 		}
-		
-		
+
 	}
 
+	// checkPanelCollision()
 	//
+	// PRECONDITION: Must have a UP processor boolean. The map should have
+	// platforms
 	//
-	//
-	public boolean checkPanelCollision(){
-		if(keyInput[KeyProcessor.UP]) 
-			return false;
-		ArrayList<Rectangle> plats = ((GameState)Panel.control.states.get(ControlManager.GAMESTATE)).
-				maps.allMaps.get(MapManager.currentMap).platforms;
-		boolean goingDown = true;
-		for(Rectangle a: plats){
-			if(getFoot().x < a.x + a.width && getFoot().x > a.x){
-				if(getFoot().y > a.y-a.height && getFoot().y <a.y-a.height+5){
-					goingDown = false;
+	// POSTCONDITION: Returns TRUE if the player is ON the platform. Returns
+	// FALSE if player is NOT on any platform AKA the air
+	public boolean checkPanelCollision() {
+		// Get the list of platforms from the current map
+		ArrayList<Rectangle> plats = ((GameState) Panel.control.states
+				.get(ControlManager.GAMESTATE)).maps.allMaps
+				.get(MapManager.currentMap).platforms;
+
+		// Iterate through all the platforms
+		for (Rectangle a : plats) {
+
+			//
+			// If the x-coordinate is between the sides of the platforms
+			if (getFoot().x < a.x + a.width && getFoot().x > a.x) {
+				//<
+				if (getFoot().y < a.y && getFoot().y > a.y -
+						a.height) {
+					return true;
 				}
+				//
+				//
 			}
+			//
+			//
 		}
-		return goingDown;
-	
+		return false;
+
 	}
+
 	// sendKeyInput()
 	// PRECONDITION: KeyProcessor needs to be set
 	// POSTCONDITION: Changes directional booleans based on key input

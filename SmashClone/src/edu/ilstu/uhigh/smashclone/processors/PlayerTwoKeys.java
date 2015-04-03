@@ -33,12 +33,12 @@ public class PlayerTwoKeys extends KeyProcessor {
 		// Initializes the key list
 		alternateKeys = new int[6];
 		// Adds the KeyEvents to their respected index
-		alternateKeys[UP] = KeyEvent.VK_O;
-		alternateKeys[LEFT] = KeyEvent.VK_K;
-		alternateKeys[DOWN] = KeyEvent.VK_L;
-		alternateKeys[RIGHT] = KeyEvent.VK_SEMICOLON;
-		alternateKeys[BUTTONA] = 0;
-		alternateKeys[BUTTONB] = 1;
+		alternateKeys[UP] = KeyEvent.VK_UP;
+		alternateKeys[LEFT] = KeyEvent.VK_LEFT;
+		alternateKeys[DOWN] = KeyEvent.VK_DOWN;
+		alternateKeys[RIGHT] = KeyEvent.VK_RIGHT;
+		alternateKeys[BUTTONA] = 2;
+		alternateKeys[BUTTONB] = 3;
 		// Return (to the constructor, which is send to the super constructor)
 		return alternateKeys;
 	}
