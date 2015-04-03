@@ -11,60 +11,40 @@ import edu.ilstu.uhigh.smashclone.control.ControlManager;
 import edu.ilstu.uhigh.smashclone.control.MenuState;
 import edu.ilstu.uhigh.smashclone.view.Panel;
 
-public class GeneralMenu implements Menu {
-	//
-	//
-	// currentChoice: holds the current option selected within the "Options" ArrayList
-	protected static int currentChoice = 0;
-	//
-	//
-	// options: list of options that the user can select. Must be displayed on GUI
-	protected static ArrayList<String> options;
-	//
-	//
-	// index: Holds the indexes for each of the options. This makes initializing clearer as well as
-	// accessing the variables clearer
-	private static final int STARTINDEX = 0;
-	private static final int OPTIONSINDEX = 1;
-	private static final int EXITINDEX = 2;
-	//
-	//
-	// background: holds the image for the background of this menu screen
-	private static BufferedImage background;
-	//
-	//
-	// titleColor: color variable of the menu title
-	private static Color titleColor;
-	//
-	// titleFont: font variable of the menu title
-	private static Font titleFont;
-	//
-	// textSpace:
-	private static int textSpace;
+public class OptionMenu implements Menu {
 
-	// GeneralMenu() constructor
-	public GeneralMenu() {
+	protected int currentChoice = 0;
+	protected ArrayList<String> options;
+
+	private static final int BACKINDEX = 0;
+	private static final int MAPINDEX = 1;
+	private static final int PLAYERINDEX = 2;
+
+	private BufferedImage background;
+	private Color titleColor;
+	private Font titleFont;
+
+	private int textSpace;
+
+	public OptionMenu() {
 		super();
 		options = new ArrayList<String>();
-		options.add(STARTINDEX, "START");
-		options.add(OPTIONSINDEX, "OPTIONS");
-		options.add(EXITINDEX, "EXIT");
+		options.add(BACKINDEX, "BACK");
+		options.add(MAPINDEX, "MAPS");
+		options.add(PLAYERINDEX, "PLAYERS");
 		// options.add(GAMESTATE, "GAMESTATE");
 
 		textSpace = 50;
 	}
 
-	@Override
 	public void init() {
 
 	}
-	
-	@Override
+
 	public void update() {
 
 	}
 
-	@Override
 	public void draw(Graphics g) {
 		// iterate through "options" and draw the string (with current option
 		// highlighted
@@ -83,19 +63,17 @@ public class GeneralMenu implements Menu {
 		}
 	}
 
-	@Override
 	public void select(int currentChoice) {
-		// Simple template for selected
-		if (currentChoice == STARTINDEX) {
-			Panel.control.setState(Panel.control.GAMESTATE);
-		} else if (currentChoice == OPTIONSINDEX) {
-			((MenuState) Panel.control.states.get(ControlManager.MENUSTATE)).setMenu(MenuState.OPTIONMENU);
-		} else if (currentChoice == EXITINDEX) {
-			System.exit(0);
-		}
+		// OVERRIDE THIS, BUT HERE IS A SIMPLE TEMPLATE
+		if (currentChoice == 0) { // BACK
+			((MenuState) Panel.control.states.get(ControlManager.MENUSTATE)).setMenu(MenuState.GENERALMENU);
+		} else if (currentChoice == 1) { // MAPS
+			((MenuState) Panel.control.states.get(ControlManager.MENUSTATE)).setMenu(MenuState.MAPMENU);
+		} else if (currentChoice == 2) { // PLAYERS
+			((MenuState) Panel.control.states.get(ControlManager.MENUSTATE)).setMenu(MenuState.PLAYERMENU);
+		} 
 	}
-	
-	@Override
+
 	public void keyPressed(KeyEvent k) {
 		// OVERRIDE THIS, BUT HERE IS A SIMPLE TEMPLATE
 		switch (k.getKeyCode()) {
@@ -114,7 +92,6 @@ public class GeneralMenu implements Menu {
 		}
 	}
 
-	@Override
 	public void keyReleased(KeyEvent k) {
 
 	}

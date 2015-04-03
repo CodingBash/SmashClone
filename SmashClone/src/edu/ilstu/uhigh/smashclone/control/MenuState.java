@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import edu.ilstu.uhigh.smashclone.menu.GeneralMenu;
 import edu.ilstu.uhigh.smashclone.menu.Menu;
+import edu.ilstu.uhigh.smashclone.menu.OptionMenu;
+import edu.ilstu.uhigh.smashclone.menu.PlayerMenu;
 
 /* MenuState:
  * State that handles all the menus. Also controls
@@ -39,6 +41,8 @@ public class MenuState implements State {
 	public void init() {
 		menus = new ArrayList<Menu>();
 		menus.add(GENERALMENU, new GeneralMenu());
+		menus.add(OPTIONMENU, new OptionMenu());
+		menus.add(PLAYERMENU, new PlayerMenu());
 		currentMenu = GENERALMENU;
 	}
 
