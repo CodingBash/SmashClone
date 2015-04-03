@@ -1,10 +1,9 @@
 package edu.ilstu.uhigh.smashclone.control;
 
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
+import edu.ilstu.uhigh.smashclone.characters.AbstractCharacter;
 import edu.ilstu.uhigh.smashclone.game.CharacterManager;
 import edu.ilstu.uhigh.smashclone.game.Controllable;
 import edu.ilstu.uhigh.smashclone.game.MapManager;
@@ -28,16 +27,20 @@ public class GameState implements State, ScreenInterface {
 		pause = false;
 		quit = false;
 		maps = new MapManager();
-		maps.currentMap = 0;
+		MapManager.currentMap = 0;
 		characters = new CharacterManager();
-		characters.setCharacter(0,characters.allCharacters.get(CharacterManager.LEFTYLUKE));
-		characters.setCharacter(1, characters.allCharacters.get(CharacterManager.GANGSTER));
+		characters.setCharacter(0,
+				characters.allCharacters.get(CharacterManager.LEFTYLUKE));
+		characters.setCharacter(1,
+				characters.allCharacters.get(CharacterManager.GANGSTER));
 		spawnCharacters();
 	}
 
+	
 	private void spawnCharacters() {
 		for (int i = 0; i < characters.playingCharacters.size(); i++) {
-			characters.playingCharacters.get(i).setPosition(maps.allMaps.get(maps.currentMap).getSpawn(i));
+			characters.playingCharacters.get(i).setPosition(
+					maps.allMaps.get(maps.currentMap).getSpawn(i));
 		}
 	}
 
@@ -55,12 +58,11 @@ public class GameState implements State, ScreenInterface {
 	public void update() {
 		// TODO Auto-generated method stub
 		if (!quit && !pause) {
-			for (Controllable c : characters.playingCharacters) {
+			for (AbstractCharacter c : characters.playingCharacters) {
 				c.update();
 			}
 		}
-		//System.out.println(characters.playingCharacters.get(0).getPosition());
-		//System.out.println(characters.playingCharacters.get(1).getPosition());
+
 	}
 
 	public void pause() {
@@ -88,8 +90,5 @@ public class GameState implements State, ScreenInterface {
 		}
 
 	}
-
-	// So what is the quit variable used for?
-	// Exiting the state or exiting the game completely?
 
 }

@@ -11,21 +11,38 @@ import edu.ilstu.uhigh.smashclone.control.ControlManager;
 import edu.ilstu.uhigh.smashclone.view.Panel;
 
 public class GeneralMenu implements Menu {
-
-	protected int currentChoice = 0;
-	protected ArrayList<String> options;
-
+	//
+	//
+	// currentChoice: holds the current option selected within the "Options" ArrayList
+	protected static int currentChoice = 0;
+	//
+	//
+	// options: list of options that the user can select. Must be displayed on GUI
+	protected static ArrayList<String> options;
+	//
+	//
+	// index: Holds the indexes for each of the options. This makes initializing clearer as well as
+	// accessing the variables clearer
 	private static final int STARTINDEX = 0;
 	private static final int OPTIONSINDEX = 1;
 	private static final int EXITINDEX = 2;
 	private static final int GAMESTATE = 3;
+	//
+	//
+	// background: holds the image for the background of this menu screen
+	private static BufferedImage background;
+	//
+	//
+	// titleColor: color variable of the menu title
+	private static Color titleColor;
+	//
+	// titleFont: font variable of the menu title
+	private static Font titleFont;
+	//
+	// textSpace:
+	private static int textSpace;
 
-	private BufferedImage background;
-	private Color titleColor;
-	private Font titleFont;
-
-	private int textSpace;
-
+	// GeneralMenu() constructor
 	public GeneralMenu() {
 		super();
 		options = new ArrayList<String>();
@@ -37,14 +54,17 @@ public class GeneralMenu implements Menu {
 		textSpace = 50;
 	}
 
+	@Override
 	public void init() {
 
 	}
-
+	
+	@Override
 	public void update() {
 
 	}
 
+	@Override
 	public void draw(Graphics g) {
 		// iterate through "options" and draw the string (with current option
 		// highlighted
@@ -63,8 +83,9 @@ public class GeneralMenu implements Menu {
 		}
 	}
 
+	@Override
 	public void select(int currentChoice) {
-		// OVERRIDE THIS, BUT HERE IS A SIMPLE TEMPLATE
+		// Simple template for selected
 		if (currentChoice == 0) { // START
 			Panel.control.setState(Panel.control.GAMESTATE);
 		} else if (currentChoice == 1) { // OPTIONS
@@ -75,7 +96,8 @@ public class GeneralMenu implements Menu {
 
 		}
 	}
-
+	
+	@Override
 	public void keyPressed(KeyEvent k) {
 		// OVERRIDE THIS, BUT HERE IS A SIMPLE TEMPLATE
 		switch (k.getKeyCode()) {
@@ -94,6 +116,7 @@ public class GeneralMenu implements Menu {
 		}
 	}
 
+	@Override
 	public void keyReleased(KeyEvent k) {
 
 	}

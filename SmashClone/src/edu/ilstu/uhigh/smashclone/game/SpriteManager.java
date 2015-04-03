@@ -22,6 +22,7 @@ public class SpriteManager {
 	public int spriteHeight;
 	final int BUFFER_LIMIT = 2;
 	int rows, columns;
+	String file;
 	ArrayList<Integer> animQueue;
 
 	/*
@@ -30,10 +31,11 @@ public class SpriteManager {
 	 * individual sprite frame
 	 */
 	public SpriteManager(String file, int w, int h) {
+		this.file = file;
+		System.out.println(file);
 		animQueue = new ArrayList<Integer>();
 		try {
-			spriteSheet = ImageIO.read(getClass().getResource(
-					"/edu/ilstu/uhigh/smashclone/resources/" + file));
+			spriteSheet = ImageIO.read(getClass().getResource("/edu/ilstu/uhigh/smashclone/resources/" + file));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -98,6 +100,11 @@ public class SpriteManager {
 		Integer i = animQueue.get(animQueue.size() - 1);
 		animQueue.clear();
 		animQueue.add(i);
+	}
+
+	public String toString() {
+		return file;
+
 	}
 
 }

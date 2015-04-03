@@ -15,7 +15,7 @@ public class MapManager {
 	//List contains all maps
 	public ArrayList<AbstractMap> allMaps;
 
-	public int currentMap;
+	public static int currentMap;
 	
 	public static final int MAINMAP = 0;
 
